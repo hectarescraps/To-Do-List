@@ -1,5 +1,5 @@
-import SideNav from "@/app/ui/sidenav";
+import { TaskContainer } from "../ui/taskcontainer";
 
 export default function Page() {
-  return <SideNav userName="Bill" projects={["Q", "Will", "Zammer"]} />;
+  return <TaskContainer title="To Do's" dueDate="July 5" project="Stersonal" />;
 }

@@ -13,10 +13,7 @@ export default function SideNav({
   projects: string[];
 }) {
   return (
-    <div
-      className="h-screen w-1/4 flex-col grid-rows-2 bg-orange-50"
-      id="nav__container"
-    >
+    <div className="h-screen flex-col bg-orange-50" id="nav__container">
       <div
         className="flex flex-grow-0 justify-between items-center pt-2"
         id="top__row"

@@ -1,7 +1,7 @@
 import { TaskButton, InvisibleTaskButton } from "./taskbutton";
 import { CalendarDaysIcon } from "@heroicons/react/24/outline";
 
-function TaskContainer({
+export function TaskContainer({
   title,
   dueDate,
   project,
@@ -31,5 +31,3 @@ function TaskContainer({
     </div>
   );
 }
-
-export { TaskContainer };
