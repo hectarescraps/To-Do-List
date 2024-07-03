@@ -11,7 +11,7 @@ export function TaskContainer({
   project: string;
 }) {
   return (
-    <div className="border-b-2 border-gray-300" id="task__container">
+    <div className="border-b-2 border-gray-300 pt-2" id="task__container">
       <div className="flex items-center justify-start" id="top__row">
         <TaskButton />
         <p className="text-lg">{title}</p>
@@ -24,7 +24,7 @@ export function TaskContainer({
             className="stroke-orange-500 w-4 h-4"
             strokeWidth={1}
           />
-          <p className="text-orange-500 text-sm">{dueDate}</p>
+          <p className="text-orange-500 text-sm ml-2">{dueDate}</p>
         </div>
         <p className="text-gray-300 text-sm">{project}</p>
       </div>
