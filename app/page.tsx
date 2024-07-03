@@ -1,5 +1,5 @@
-import { Bubble } from "@/app/ui/tasks";
+import { TaskContainer } from "@/app/ui/tasks";
 
 export default function Home() {
-  return Bubble({ title: "To Do's", dueDate: "2/3", project: "Stersonal" });
+  return <TaskContainer title="To Do's" dueDate="July 5" project="Stersonal" />;
 }

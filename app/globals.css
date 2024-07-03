@@ -3,5 +3,5 @@
 @tailwind utilities;
 
 :root {
-  --background-colr: #f2efed;
+  background-color: white;
 }
