@@ -1,5 +1,6 @@
 import { TaskContainer } from "../ui/taskcontainer";
 import { fetchTasks } from "../lib/data";
+import * as dayjs from "dayjs";
 
 export default async function Page() {
   const tasks = await fetchTasks();
@@ -10,7 +11,7 @@ export default async function Page() {
         <div className="pt-2" key={index}>
           <TaskContainer
             title={task.title}
-            dueDate={task.dueDate}
+            dueDate={dayjs(task.duedate).format("MMM-D")}
             project={task.project}
           />
         </div>
