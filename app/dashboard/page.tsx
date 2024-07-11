@@ -1,10 +1,8 @@
 import { TaskContainer } from "../ui/taskcontainer";
+import { fetchTasks } from "../lib/data";
 
-export default function Page() {
-  const tasks = [
-    { title: "To Do's", dueDate: "July 5", project: "Stersonal" },
-    { title: "To Do's #2", dueDate: "July 6", project: "Stersonality" },
-  ];
+export default async function Page() {
+  const tasks = await fetchTasks();
 
   return (
     <>
