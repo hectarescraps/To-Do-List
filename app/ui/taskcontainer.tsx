@@ -11,12 +11,12 @@ export function TaskContainer({
   project: string;
 }) {
   return (
-    <div className="border-b-2 border-gray-300 pt-2" id="task__container">
+    <div className="border-b-2 border-gray-300 pb-1 pt-1" id="task__container">
       <div className="flex items-center justify-start" id="top__row">
         <TaskButton />
-        <p className="text-lg">{title}</p>
+        <p className="text-lg font-light">{title}</p>
       </div>
-      <div className="flex items-center justify-between">
+      <div className="flex items-center justify-between" id="bottom__row">
         <div className="flex items-center w-1/2">
           {/* Work around for formatting. Potentially revisit in the future. */}
           <InvisibleTaskButton />
@@ -24,9 +24,9 @@ export function TaskContainer({
             className="stroke-orange-500 w-4 h-4"
             strokeWidth={1}
           />
-          <p className="text-orange-500 text-sm ml-2">{dueDate}</p>
+          <p className="text-orange-500 text-sm font-light ml-2">{dueDate}</p>
         </div>
-        <p className="text-gray-300 text-sm">{project}</p>
+        <p className="text-gray-400 text-sm font-light">{project}</p>
       </div>
     </div>
   );

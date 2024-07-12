@@ -1,6 +1,7 @@
+import * as dayjs from "dayjs";
 import { TaskContainer } from "../ui/taskcontainer";
 import { fetchTasks } from "../lib/data";
-import * as dayjs from "dayjs";
+import { AddTaskButton } from "../ui/taskbutton";
 
 export default async function Page() {
   const tasks = await fetchTasks();
@@ -8,7 +9,7 @@ export default async function Page() {
   return (
     <>
       {tasks.map((task, index) => (
-        <div className="pt-2" key={index}>
+        <div key={index}>
           <TaskContainer
             title={task.title}
             dueDate={dayjs(task.duedate).format("MMM-D")}
@@ -16,6 +17,9 @@ export default async function Page() {
           />
         </div>
       ))}
+      <div className="pt-1 pb-1">
+        <AddTaskButton />
+      </div>
     </>
   );
 }

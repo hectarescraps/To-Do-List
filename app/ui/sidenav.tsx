@@ -18,20 +18,20 @@ export default function SideNav({
         className="flex flex-grow-0 justify-between items-center pt-2"
         id="top__row"
       >
-        <h1 className="ml-4 text-lg">{userName}</h1>
+        <h1 className="ml-4 text-lg font-light">{userName}</h1>
         <ChevronDoubleLeftIcon className="w-4 h-4 mr-4" strokeWidth={2} />
       </div>
       <div className="flex-col pt-10" id="inboxes">
         <div className="flex justify-start items-center ml-4" id="search">
           <MagnifyingGlassIcon className="w-4 h-4" strokeWidth={2} />
-          <h2 className="ml-4 text-lg">{"Search"}</h2>
+          <h2 className="ml-4 text-lg font-light">{"Search"}</h2>
         </div>
         <div
           className="flex justify-start items-center ml-4 pt-3"
           id="all_tasks"
         >
           <InboxIcon className="w-4 h-4" strokeWidth={2} />
-          <h2 className="ml-4 text-lg">{"All Tasks"}</h2>
+          <h2 className="ml-4 text-lg font-light">{"All Tasks"}</h2>
         </div>
         {projects.map((project, index) => (
           <div
@@ -40,7 +40,7 @@ export default function SideNav({
             key={index}
           >
             <HashtagIcon className="w-4 h-4" strokeWidth={2} />
-            <h2 className="ml-4 text-lg">{project}</h2>
+            <h2 className="ml-4 text-lg font-light">{project}</h2>
           </div>
         ))}
       </div>

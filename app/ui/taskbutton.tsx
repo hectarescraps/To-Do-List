@@ -1,4 +1,4 @@
-import { CheckIcon } from "@heroicons/react/24/outline";
+import { CheckIcon, PlusIcon } from "@heroicons/react/24/outline";
 
 export function TaskButton() {
   return (
@@ -22,5 +22,23 @@ export function InvisibleTaskButton() {
       type="button"
       value="false"
     />
+  );
+}
+
+export function AddTaskButton() {
+  return (
+    <button
+      className="bg-white ml-2 flex items-center group"
+      type="button"
+      value="false"
+    >
+      <PlusIcon
+        className="rounded-full w-5 h-5 bg-white stroke-orange-800 group-hover:stroke-white group-hover:bg-orange-800"
+        strokeWidth={2}
+      />
+      <span className="ml-4 text-lg font-light text-gray-400 group-hover:text-orange-800">
+        {"Add Task"}
+      </span>
+    </button>
   );
 }
