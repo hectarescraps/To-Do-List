@@ -1,7 +1,8 @@
 import * as dayjs from "dayjs";
 import { TaskContainer } from "../ui/taskcontainer";
 import { fetchTasks } from "../lib/data";
-import { AddTaskButton } from "../ui/taskbutton";
+import { AddTaskButton } from "../ui/buttons";
+import { TaskForm } from "../ui/forms";
 
 export default async function Page() {
   const tasks = await fetchTasks();
@@ -19,6 +20,9 @@ export default async function Page() {
       ))}
       <div className="pt-1 pb-1">
         <AddTaskButton />
+      </div>
+      <div className="pt-3 w-full">
+        <TaskForm />
       </div>
     </>
   );
