@@ -1,4 +1,4 @@
-import * as dayjs from "dayjs";
+import dayjs from "dayjs";
 import { TaskContainer } from "../ui/taskcontainer";
 import { fetchTasks } from "../lib/data";
 import { AddTaskButton } from "../ui/buttons";
