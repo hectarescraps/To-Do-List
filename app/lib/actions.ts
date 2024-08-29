@@ -40,6 +40,7 @@ export type State = {
     priority?: string[];
   };
   message: string | null;
+  success: boolean;
 };
 
 export async function createTask(prevState: State, formData: FormData) {
