@@ -53,6 +53,7 @@ export async function createTask(prevState: State, formData: FormData) {
   });
 
   if (!validatedFields.success) {
+    console.log(validatedFields.error.flatten().fieldErrors);
     return {
       errors: validatedFields.error.flatten().fieldErrors,
       message: "Invalid fields. Failed to create Task",
@@ -62,13 +63,29 @@ export async function createTask(prevState: State, formData: FormData) {
   const { title, subtitle, project, label, dueDate, priority } =
     validatedFields.data;
 
-  try {
-    sql`INSERT INTO tasks (title, subtitle, project, label, dueDate, priority) 
-        VALUES (${title}, ${subtitle}, ${project}, ${label}, ${dueDate}, ${priority})`;
-  } catch (error) {
-    return { message: "Database Error. Failed to create Task" };
-  }
+  const formattedDate = dueDate.slice(0, 28);
 
+  try {
+    sql`INSERT INTO tasks (id, title, subtitle, project, label, duedate, priority) 
+        VALUES (gen_random_uuid(), ${title}, ${subtitle}, ${project}, ${label}, ${formattedDate}, ${priority})`;
+    return { errors: {}, message: "Task created successfully", success: true };
+  } catch (error) {
+    return {
+      errors: { error },
+      message: "Database Error. Failed to create Task",
+      success: false,
+    };
+  }
+  // revalidatePath("/dashboard");
+  // redirect("/dashboard");
+}
+
+export async function deleteTask({ id }: { id: string }) {
+  try {
+    sql`DELETE FROM ONLY tasks WHERE id = ${id}`;
+  } catch (error) {
+    return { message: "Database Error. Failed to delete Task" };
+  }
   revalidatePath("/dashboard");
   redirect("/dashboard");
 }

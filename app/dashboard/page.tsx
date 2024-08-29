@@ -3,8 +3,13 @@ import { TaskContainer } from "../ui/taskcontainer";
 import { fetchTasks } from "../lib/data";
 import { AddTaskButton } from "../ui/buttons";
 import { TaskForm } from "../ui/forms";
+import { AddTaskWrapper } from "../ui/addtaskwrapper";
+import { Suspense } from "react";
 
-export default async function Page() {
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
+async function TaskList() {
   const tasks = await fetchTasks();
 
   return (
@@ -15,15 +20,21 @@ export default async function Page() {
             title={task.title}
             dueDate={dayjs(task.duedate).format("MMM-D")}
             project={task.project}
+            id={task.id}
           />
         </div>
       ))}
-      <div className="pt-1 pb-1">
-        <AddTaskButton />
-      </div>
-      <div className="pt-3 w-full">
-        <TaskForm />
-      </div>
+    </>
+  );
+}
+
+export default function Page() {
+  return (
+    <>
+      <Suspense fallback={<div>Loading tasks...</div>}>
+        <TaskList />
+      </Suspense>
+      <AddTaskWrapper />
     </>
   );
 }

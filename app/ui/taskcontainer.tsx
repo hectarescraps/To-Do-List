@@ -5,15 +5,17 @@ export function TaskContainer({
   title,
   dueDate,
   project,
+  id,
 }: {
   title: string;
   dueDate: string;
   project: string;
+  id: string;
 }) {
   return (
     <div className="border-b-2 border-gray-300 pb-1 pt-1" id="task__container">
       <div className="flex items-center justify-start" id="top__row">
-        <TaskButton />
+        <TaskButton id={id} />
         <p className="text-lg font-light">{title}</p>
       </div>
       <div className="flex items-center justify-between" id="bottom__row">

@@ -1,4 +1,4 @@
-import { sql } from "@vercel/postgres";
+/* import { sql } from "@vercel/postgres";
 import { NextResponse } from "next/server";
 import { tasks } from "@/app/lib/placeholder-data";
 
@@ -17,3 +17,4 @@ export async function GET(request: Request) {
   const table = await sql`SELECT * FROM tasks;`;
   return NextResponse.json({ table }, { status: 200 });
 }
+ */
