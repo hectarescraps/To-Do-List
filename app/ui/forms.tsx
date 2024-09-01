@@ -77,20 +77,27 @@ export function TaskForm({ onClose }: { onClose: () => void }) {
               granularity="day"
               isRequired
               selectorIcon={
-                <CalendarIcon className="w-5 h-5 text-orange-500" />
+                <span className="w-5 h-5 text-orange-500">
+                  <CalendarIcon />
+                </span>
               }
               popoverProps={{
                 placement: "bottom",
                 shouldFlip: false,
                 backdrop: "opaque",
+                className:
+                  "bg-white border border-orange-300 rounded-md shadow-lg p-2",
               }}
-              style={{
-                "--date-picker-background": "white",
-                "--date-picker-border-color": "#fdba74",
-                "--date-picker-header-background": "#fff7ed",
-                "--date-picker-selected-color": "#f97316",
-                "--date-picker-selected-background": "#fff7ed",
-                "--date-picker-hover-background": "#fed7aa",
+              classNames={{
+                calendar: "bg-white",
+                header: "text-orange-500",
+                monthAndYear: "text-orange-700 font-semibold",
+                weekday: "text-orange-500",
+                day: "text-gray-700 hover:bg-orange-100",
+                today: "bg-orange-100",
+                selectedDay: "bg-orange-500 text-white hover:bg-orange-600",
+                nextButton: "text-orange-500 hover:text-orange-700",
+                prevButton: "text-orange-500 hover:text-orange-700",
               }}
             />
           </div>
