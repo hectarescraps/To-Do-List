@@ -86,16 +86,7 @@ export function TaskForm({ onClose }: { onClose: () => void }) {
                 shouldFlip: false,
                 backdrop: "opaque",
                 className:
-                  "bg-white border border-orange-300 rounded-md shadow-lg p-2",
-              }}
-              classNames={{
-                base: "bg-white",
-                monthAndYear: "text-orange-700 font-semibold",
-                weekday: "text-orange-500",
-                day: "text-gray-700 hover:bg-orange-100",
-                selectedDay: "bg-orange-500 text-white hover:bg-orange-600",
-                nextButton: "text-orange-500 hover:text-orange-700",
-                prevButton: "text-orange-500 hover:text-orange-700",
+                  "bg-black text-white border border-orange-300 rounded-md shadow-lg p-2",
               }}
             />
           </div>
