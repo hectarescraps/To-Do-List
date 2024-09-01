@@ -73,7 +73,7 @@ export async function createTask(prevState: State, formData: FormData) {
     return { errors: {}, message: "Task created successfully", success: true };
   } catch (error) {
     return {
-      errors: { error },
+      errors: {},
       message: "Database Error. Failed to create Task",
       success: false,
     };
