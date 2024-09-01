@@ -68,20 +68,29 @@ export function TaskForm({ onClose }: { onClose: () => void }) {
           id="duedate__priority__container"
           className="flex items-center justify-start pt-2 px-1"
         >
-          <div id="duedate__container" className="stroke-orange-500">
+          <div id="duedate__container" className="relative">
             <DatePicker
-              className="text-orange-500 font-light text-sm "
+              className="text-orange-500 font-light text-sm border border-orange-300 rounded-md px-2 py-1 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent w-full"
               label=""
               name="dueDate"
               defaultValue={now(getLocalTimeZone())}
               granularity="day"
               isRequired
-              // in-line importing svg since Next JS Image was not correctly styling icon
-              selectorIcon={<CalendarIcon />}
+              selectorIcon={
+                <CalendarIcon className="w-5 h-5 text-orange-500" />
+              }
               popoverProps={{
                 placement: "bottom",
                 shouldFlip: false,
                 backdrop: "opaque",
+              }}
+              style={{
+                "--date-picker-background": "white",
+                "--date-picker-border-color": "#fdba74",
+                "--date-picker-header-background": "#fff7ed",
+                "--date-picker-selected-color": "#f97316",
+                "--date-picker-selected-background": "#fff7ed",
+                "--date-picker-hover-background": "#fed7aa",
               }}
             />
           </div>

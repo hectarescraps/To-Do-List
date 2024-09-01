@@ -58,6 +58,7 @@ export async function createTask(prevState: State, formData: FormData) {
     return {
       errors: validatedFields.error.flatten().fieldErrors,
       message: "Invalid fields. Failed to create Task",
+      success: false,
     };
   }
 
@@ -67,7 +68,7 @@ export async function createTask(prevState: State, formData: FormData) {
   const formattedDate = dueDate.slice(0, 28);
 
   try {
-    sql`INSERT INTO tasks (id, title, subtitle, project, label, duedate, priority) 
+    await sql`INSERT INTO tasks (id, title, subtitle, project, label, duedate, priority) 
         VALUES (gen_random_uuid(), ${title}, ${subtitle}, ${project}, ${label}, ${formattedDate}, ${priority})`;
     return { errors: {}, message: "Task created successfully", success: true };
   } catch (error) {
