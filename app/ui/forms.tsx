@@ -40,6 +40,7 @@ export function TaskForm({ onClose }: { onClose: () => void }) {
       }
       // refresh the page
       router.refresh();
+      state.success = false;
     }
   }, [state.success, router, onClose]);
 
@@ -84,9 +85,16 @@ export function TaskForm({ onClose }: { onClose: () => void }) {
               popoverProps={{
                 placement: "bottom",
                 shouldFlip: false,
-                backdrop: "opaque",
+                backdrop: "blur",
                 className:
-                  "bg-black text-white border border-orange-300 rounded-md shadow-lg p-2",
+                  "bg-white text-orange-500 border border-orange-300 rounded-md shadow-lg p-2",
+              }}
+              calendarProps={{
+                minValue: now(getLocalTimeZone()),
+                showShadow: true,
+                classNames: {
+                  header: "bg-gray-200 text-gray-900",
+                },
               }}
             />
           </div>
