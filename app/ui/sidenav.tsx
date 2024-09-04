@@ -8,9 +8,11 @@ import {
 export default function SideNav({
   userName,
   projects,
+  onClose,
 }: {
   userName: string;
   projects: string[];
+  onClose: () => void;
 }) {
   return (
     <div
@@ -22,7 +24,11 @@ export default function SideNav({
         id="top__row"
       >
         <h1 className="ml-4 text-lg font-light">{userName}</h1>
-        <ChevronDoubleLeftIcon className="w-4 h-4 mr-4" strokeWidth={2} />
+        <ChevronDoubleLeftIcon
+          onClick={onClose}
+          className="w-4 h-4 mr-4 hover:stroke-orange-800 cursor-pointer"
+          strokeWidth={2}
+        />
       </div>
       <div className="flex-col pt-10" id="inboxes">
         <div className="flex justify-start items-center ml-4" id="search">
