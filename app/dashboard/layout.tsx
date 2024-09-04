@@ -1,35 +1,22 @@
-"use client";
+import { Suspense } from "react";
+import { fetchProjects } from "../lib/data";
+import LayoutWrapper from "./layoutwrapper";
 
-import { useState } from "react";
-import SideNav from "../ui/sidenav";
-import { ChevronDoubleRightIcon } from "@heroicons/react/24/outline";
-
-export default function Layout({ children }: { children: React.ReactNode }) {
-  const [showSideNav, setShowSideNav] = useState(true);
-
+export default async function Layout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  const projects = await fetchProjects();
+  const projectNames = projects.map((project) => project.project);
   return (
-    <div className="flex flex-row">
-      {showSideNav && (
-        <div className="w-1/4">
-          <SideNav
-            onClose={() => setShowSideNav(false)}
-            userName="Bill"
-            projects={["Q", "Will", "Zammer"]}
-          />
+    <>
+      <Suspense fallback={<div>Loading projects...</div>}>
+        <div className="flex flex-row">
+          <LayoutWrapper projects={projectNames} />
+          <div className="flex-grow ml-6 mr-6">{children}</div>
         </div>
-      )}
-      {!showSideNav && (
-        <div className="w-6">
-          <div className="fixed top-0 left-0 h-full flex items-center bg-orange-50 overflow-y-auto">
-            <ChevronDoubleRightIcon
-              onClick={() => setShowSideNav(true)}
-              className="w-4 h-4 ml-1 mr-1 hover:stroke-orange-800 cursor-pointer"
-              strokeWidth={2}
-            />
-          </div>
-        </div>
-      )}
-      <div className="flex-grow ml-6 mr-6">{children}</div>
-    </div>
+      </Suspense>
+    </>
   );
 }

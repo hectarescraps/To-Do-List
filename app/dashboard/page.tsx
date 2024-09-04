@@ -1,6 +1,6 @@
 import dayjs from "dayjs";
 import { TaskContainer } from "../ui/taskcontainer";
-import { fetchTasks } from "../lib/data";
+import { fetchAllTasks } from "../lib/data";
 import { AddTaskButton } from "../ui/buttons";
 import { TaskForm } from "../ui/forms";
 import { AddTaskWrapper } from "../ui/addtaskwrapper";
@@ -9,12 +9,17 @@ import { Suspense } from "react";
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
 
-async function TaskList() {
-  const tasks = await fetchTasks();
+async function TaskList({ project }: { project?: string }) {
+  const tasks = await fetchAllTasks();
+
+  const filteredTasks =
+    project && project !== "All Tasks"
+      ? tasks.filter((task) => task.project === project)
+      : tasks;
 
   return (
     <>
-      {tasks.map((task, index) => (
+      {filteredTasks.map((task, index) => (
         <div key={index}>
           <TaskContainer
             title={task.title}
@@ -28,11 +33,15 @@ async function TaskList() {
   );
 }
 
-export default function Page() {
+export default function Page({
+  searchParams,
+}: {
+  searchParams: { project?: string };
+}) {
   return (
     <>
       <Suspense fallback={<div>Loading tasks...</div>}>
-        <TaskList />
+        <TaskList project={searchParams.project} />
       </Suspense>
       <AddTaskWrapper />
     </>

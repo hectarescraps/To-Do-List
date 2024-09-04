@@ -1,9 +1,11 @@
+"use client";
+
 import {
   ChevronDoubleLeftIcon,
-  MagnifyingGlassIcon,
   InboxIcon,
   HashtagIcon,
 } from "@heroicons/react/24/outline";
+import { useRouter } from "next/navigation";
 
 export default function SideNav({
   userName,
@@ -14,6 +16,12 @@ export default function SideNav({
   projects: string[];
   onClose: () => void;
 }) {
+  const router = useRouter();
+
+  const handleProjectClick = (project: string) => {
+    router.push(`/dashboard?project=${project}`);
+  };
+
   return (
     <div
       className="fixed top-0 left-0 h-full w-1/4 flex flex-col bg-orange-50 overflow-y-auto"
@@ -30,27 +38,35 @@ export default function SideNav({
           strokeWidth={2}
         />
       </div>
-      <div className="flex-col pt-10" id="inboxes">
-        <div className="flex justify-start items-center ml-4" id="search">
-          <MagnifyingGlassIcon className="w-4 h-4" strokeWidth={2} />
-          <h2 className="ml-4 text-lg font-light">{"Search"}</h2>
-        </div>
-        <div
-          className="flex justify-start items-center ml-4 pt-3"
+      <div className="flex-col pt-6" id="inboxes">
+        <button
+          className="flex justify-start items-center ml-4 pt-3 group"
           id="all_tasks"
+          onClick={() => handleProjectClick("All Tasks")}
         >
-          <InboxIcon className="w-4 h-4" strokeWidth={2} />
-          <h2 className="ml-4 text-lg font-light">{"All Tasks"}</h2>
-        </div>
+          <InboxIcon
+            className="w-4 h-4 group-hover:stroke-orange-800"
+            strokeWidth={2}
+          />
+          <h2 className="ml-4 text-lg font-light group-hover:text-orange-800">
+            {"All Tasks"}
+          </h2>
+        </button>
         {projects.map((project, index) => (
-          <div
-            className="flex justify-start items-center ml-4 pt-3"
+          <button
+            className="flex justify-start items-center ml-4 pt-3 group "
             id="all_tasks"
             key={index}
+            onClick={() => handleProjectClick(project)}
           >
-            <HashtagIcon className="w-4 h-4" strokeWidth={2} />
-            <h2 className="ml-4 text-lg font-light">{project}</h2>
-          </div>
+            <HashtagIcon
+              className="w-4 h-4 group-hover:stroke-orange-800 "
+              strokeWidth={2}
+            />
+            <h2 className="ml-4 text-lg font-light group-hover:text-orange-800">
+              {project}
+            </h2>
+          </button>
         ))}
       </div>
     </div>
