@@ -33,7 +33,7 @@ export function TaskForm({ onClose }: { onClose: () => void }) {
   const router = useRouter();
 
   useEffect(() => {
-    if (state.success) {
+    if (state && state.success) {
       // Reset form fields
       if (formRef.current) {
         formRef.current.reset();
@@ -42,7 +42,7 @@ export function TaskForm({ onClose }: { onClose: () => void }) {
       router.refresh();
       state.success = false;
     }
-  }, [state.success, router, onClose]);
+  }, [state, router, onClose]);
 
   return (
     <>

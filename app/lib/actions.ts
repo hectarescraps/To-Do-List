@@ -8,38 +8,31 @@ import { signIn } from "@/auth";
 import { AuthError } from "next-auth";
 import bcrypt from "bcrypt";
 import { auth } from "@/auth";
+import dayjs from "dayjs";
 
 const FormSchema = z.object({
   id: z.string(),
+  email: z.string(),
   title: z.string({
     invalid_type_error: "Please enter a Task Title.",
-  }),
-  subtitle: z.string({
-    invalid_type_error: "Please enter a Task Subtitle.",
   }),
   project: z.string({
     invalid_type_error: "Please enter a Project.",
   }),
-  label: z.string({
-    invalid_type_error: "Please enter a Label.",
-  }),
   dueDate: z.string({
     invalid_type_error: "Please enter a valid Date.",
   }),
-
   priority: z.coerce.number().gt(0, {
     message: "Please enter a Priority",
   }),
 });
 
-const CreateTask = FormSchema.omit({ id: true });
+const CreateTask = FormSchema.omit({ id: true, email: true });
 
 export type State = {
   errors?: {
     title?: string[];
-    subtitle?: string[];
     project?: string[];
-    label?: string[];
     dueDate?: string[];
     priority?: string[];
   };
@@ -50,9 +43,7 @@ export type State = {
 export async function createTask(prevState: State, formData: FormData) {
   const validatedFields = CreateTask.safeParse({
     title: formData.get("title"),
-    subtitle: formData.get("subtitle"),
     project: formData.get("project"),
-    label: formData.get("label"),
     dueDate: formData.get("dueDate"),
     priority: formData.get("priority"),
   });
@@ -66,14 +57,20 @@ export async function createTask(prevState: State, formData: FormData) {
     };
   }
 
-  const { title, subtitle, project, label, dueDate, priority } =
-    validatedFields.data;
+  const { title, project, dueDate, priority } = validatedFields.data;
 
-  const formattedDate = dueDate.slice(0, 28);
+  // formats dueDate to remove written timezone e.g. [America/Los_Angeles]
+  var formattedDate = dueDate.slice(0, 29);
+  // formats dueDate to just include the date
+  formattedDate = dayjs(formattedDate).format("YYYY-MM-DD");
+
+  // get email from auth session var
+  const session = await auth();
+  const email = session?.user?.email;
 
   try {
-    await sql`INSERT INTO tasks (id, title, subtitle, project, label, duedate, priority) 
-        VALUES (gen_random_uuid(), ${title}, ${subtitle}, ${project}, ${label}, ${formattedDate}, ${priority})`;
+    await sql`INSERT INTO tasks (id, email, title, project, duedate, priority) 
+        VALUES (gen_random_uuid(), ${email}, ${title}, ${project}, ${formattedDate}, ${priority})`;
     return { errors: {}, message: "Task created successfully", success: true };
   } catch (error) {
     return {

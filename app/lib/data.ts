@@ -1,8 +1,13 @@
 import { sql } from "@vercel/postgres";
+import { auth } from "@/auth";
 
 export async function fetchAllTasks() {
+  const session = await auth();
+  const email = session?.user?.email;
+
   try {
-    const data = await sql`SELECT * FROM tasks ORDER BY duedate ASC;`;
+    const data =
+      await sql`SELECT * FROM tasks WHERE email = ${email} ORDER BY duedate ASC, priority ASC;`;
     return data.rows;
   } catch (error) {
     console.log("Database Error: ", error);
@@ -11,8 +16,12 @@ export async function fetchAllTasks() {
 }
 
 export async function fetchProjects() {
+  const session = await auth();
+  const email = session?.user?.email;
+
   try {
-    const data = await sql`SELECT project FROM tasks GROUP BY project`;
+    const data =
+      await sql`SELECT project FROM tasks WHERE email = ${email} GROUP BY project ORDER BY project ASC;`;
     return data.rows;
   } catch (error) {
     console.log("Database Error: ", error);
