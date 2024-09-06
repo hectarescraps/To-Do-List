@@ -5,6 +5,7 @@ import { AddTaskButton } from "../ui/buttons";
 import { TaskForm } from "../ui/forms";
 import { AddTaskWrapper } from "../ui/addtaskwrapper";
 import { Suspense } from "react";
+import { auth } from "../../auth";
 
 export const dynamic = "force-dynamic";
 export const revalidate = 0;

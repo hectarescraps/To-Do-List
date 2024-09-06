@@ -8,15 +8,24 @@ import {
 } from "@heroicons/react/24/outline";
 import { useFormState, useFormStatus } from "react-dom";
 import { authenticate, createUser } from "@/app/lib/actions";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 
 export default function LoginForm() {
   const [signUp, setSignUp] = useState(false);
   const [errorMessage, formAction] = useFormState(
     signUp ? createUser : authenticate,
-    undefined
+    ""
   );
   const { pending } = useFormStatus();
+
+  const router = useRouter();
+
+  useEffect(() => {
+    if (errorMessage == "User successfully signed up and signed in") {
+      router.push("/dashboard");
+    }
+  }, [errorMessage, router]);
 
   return (
     <form action={formAction} className="space-y-3">
@@ -79,12 +88,13 @@ export default function LoginForm() {
           aria-live="polite"
           aria-atomic="true"
         >
-          {errorMessage && (
-            <>
-              <ExclamationCircleIcon className="h-5 w-5 text-red-500" />
-              <p className="text-sm text-red-500">{errorMessage}</p>
-            </>
-          )}
+          {errorMessage &&
+            errorMessage != "User successfully signed up and signed in" && (
+              <>
+                <ExclamationCircleIcon className="h-5 w-5 text-red-500" />
+                <p className="text-sm text-red-500">{errorMessage}</p>
+              </>
+            )}
         </div>
       </div>
     </form>

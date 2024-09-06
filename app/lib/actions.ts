@@ -3,10 +3,11 @@
 import { z } from "zod";
 import { sql } from "@vercel/postgres";
 import { revalidatePath } from "next/cache";
-import { redirect } from "next/navigation";
-import { signIn } from "../auth";
+import { redirect, useRouter } from "next/navigation";
+import { signIn } from "@/auth";
 import { AuthError } from "next-auth";
 import bcrypt from "bcrypt";
+import { auth } from "@/auth";
 
 const FormSchema = z.object({
   id: z.string(),
@@ -141,7 +142,7 @@ export async function createUser(
   }
   try {
     await signIn("credentials", { redirect: false, email, password });
-    console.log("User successfully signed up and signed in");
+    return "User successfully signed up and signed in";
   } catch (error) {
     console.error("Failed to sign in user after sign up", error);
     throw new Error("Failed to sign in user after sign up");
