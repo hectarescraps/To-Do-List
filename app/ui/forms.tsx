@@ -56,15 +56,7 @@ export function TaskForm({ onClose }: { onClose: () => void }) {
             className="text-lg text-gray-400 px-1 w-full font-light"
           />
         </div>
-        <div id="task__subtitle__container">
-          <input
-            id="task__subtitle"
-            name="subtitle"
-            placeholder="Task Subtitle"
-            type="text"
-            className="text-sm font-light text-gray-400 px-1 w-full"
-          />
-        </div>
+
         <div
           id="duedate__priority__container"
           className="flex items-center justify-start pt-2 px-1"
@@ -132,13 +124,6 @@ export function TaskForm({ onClose }: { onClose: () => void }) {
             id="project"
             name="project"
             placeholder="Project"
-            type="text"
-            className=" text-gray-400 px-1 w-full font-light"
-          />
-          <input
-            id="label"
-            name="label"
-            placeholder="Label"
             type="text"
             className=" text-gray-400 px-1 w-full font-light"
           />

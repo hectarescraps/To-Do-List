@@ -2,7 +2,7 @@ import { sql } from "@vercel/postgres";
 
 export async function fetchAllTasks() {
   try {
-    const data = await sql`SELECT * FROM tasks;`;
+    const data = await sql`SELECT * FROM tasks ORDER BY duedate ASC;`;
     console.log(data);
     return data.rows;
   } catch (error) {
