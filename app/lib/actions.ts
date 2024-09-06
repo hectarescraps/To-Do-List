@@ -101,6 +101,7 @@ export async function authenticate(
 ) {
   try {
     await signIn("credentials", formData);
+    return "User successfully signed in";
   } catch (error) {
     if (error instanceof AuthError) {
       switch (error.type) {
@@ -114,7 +115,10 @@ export async function authenticate(
   }
 }
 
-export async function createUser(prevState: string, formData: FormData) {
+export async function createUser(
+  prevState: string | undefined,
+  formData: FormData
+) {
   const parsedFormData = z
     .object({ email: z.string().email(), password: z.string().min(6) })
     .safeParse({
@@ -130,14 +134,14 @@ export async function createUser(prevState: string, formData: FormData) {
   const hashedPassword = await bcrypt.hash(password, 10);
   try {
     await sql`INSERT INTO users (email, password) VALUES (${email}, ${hashedPassword})`;
-    console.log("Created user!");
+    console.log("User created successfully!");
   } catch (error) {
     console.error("Failed to create user:", error);
     throw new Error("Failed to create user.");
   }
   try {
     await signIn("credentials", { redirect: false, email, password });
-    return "User successfully signed up and signed in";
+    console.log("User successfully signed up and signed in");
   } catch (error) {
     console.error("Failed to sign in user after sign up", error);
     throw new Error("Failed to sign in user after sign up");
