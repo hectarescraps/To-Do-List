@@ -8,6 +8,8 @@ import { DatePicker as MuiDatePicker } from "@mui/x-date-pickers";
 import dayjs from "dayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import { FlagIcon } from "@heroicons/react/24/solid";
+import { InputLabel, Select, FormControl, MenuItem } from "@mui/material";
 
 function CalendarIcon() {
   return (
@@ -55,7 +57,7 @@ export function TaskForm({ onClose }: { onClose: () => void }) {
             name="title"
             placeholder="Task Title"
             type="text"
-            className="text-lg text-gray-400 px-1 w-full font-light"
+            className="text-lg text-gray-400 px-1 w-full font-light rounded-sm focus:outline-none focus:ring-2 focus:ring-orange-800 focus:border-transparent"
           />
         </div>
 
@@ -92,9 +94,7 @@ export function TaskForm({ onClose }: { onClose: () => void }) {
                       "&:hover .MuiOutlinedInput-notchedOutline": {
                         borderColor: "#9a3412", // orange-800
                       },
-                      "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
-                        borderColor: "#9a3412", // orange-800
-                      },
+
                       "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline":
                         {
                           borderColor: "#9a3412", // orange-800
@@ -132,28 +132,65 @@ export function TaskForm({ onClose }: { onClose: () => void }) {
 
           <div
             id="priority__container"
-            className="flex flex-grow items-center justify-start px-2"
+            className="flex flex-grow items-center justify-start px-2 w-36"
           >
-            <select
-              id="priority"
-              name="priority"
-              className="w-full rounded-md border border-gray-100 text-sm font-light"
-              defaultValue=""
-              aria-describedby="customer-error"
-            >
-              <option value="" className="text-gray-400" disabled>
-                {"Priority"}
-              </option>
-              <option value="1" className="text-red-600">
-                {"Priority: 1"}
-              </option>
-              <option value="2" className="text-red-300">
-                {"Priority: 2"}
-              </option>
-              <option value="3" className="text-red-100">
-                {"Priority: 3"}
-              </option>
-            </select>
+            <FormControl fullWidth>
+              <Select
+                id="priority"
+                name="priority"
+                className="flex items-center"
+                defaultValue=""
+                displayEmpty
+                sx={{
+                  height: "36px",
+                  "& .MuiSelect-select": {
+                    color: "#9ca3af", //gray-400
+                    fontWeight: 300,
+                  },
+                  "& .MuiOutlinedInput-notchedOutline": {
+                    borderColor: "#9ca3af",
+                  },
+                  "&:hover .MuiOutlinedInput-notchedOutline": {
+                    borderColor: "#9a3412",
+                  },
+                  "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+                    borderColor: "#9a3412",
+                    borderWidth: "2px",
+                  },
+                }}
+              >
+                <MenuItem value="" disabled>
+                  <span className="text-gray-400 ">Priority</span>
+                </MenuItem>
+                <MenuItem value="1">
+                  <div className="flex items-center">
+                    <FlagIcon
+                      className="w-4 h-4 mr-2 stroke-orange-800 fill-orange-800"
+                      strokeWidth={2}
+                    />
+                    <span className="text-gray-400 font-light">{"High"}</span>
+                  </div>
+                </MenuItem>
+                <MenuItem value="2">
+                  <div className="flex items-center">
+                    <FlagIcon
+                      className="w-4 h-4 mr-2 stroke-orange-500 fill-orange-500"
+                      strokeWidth={2}
+                    />
+                    <span className="text-gray-400 font-light">{"Medium"}</span>
+                  </div>
+                </MenuItem>
+                <MenuItem value="3">
+                  <div className="flex items-center">
+                    <FlagIcon
+                      className="w-4 h-4 mr-2 stroke-orange-100 fill-orange-100"
+                      strokeWidth={2}
+                    />
+                    <span className="text-gray-400 font-light">{"Low"}</span>
+                  </div>
+                </MenuItem>
+              </Select>
+            </FormControl>
           </div>
         </div>
         <div
@@ -165,7 +202,7 @@ export function TaskForm({ onClose }: { onClose: () => void }) {
             name="project"
             placeholder="Project"
             type="text"
-            className=" text-gray-400 px-1 w-full font-light"
+            className=" text-gray-400 px-1 w-full font-light rounded-sm focus:outline-none focus:ring-2 focus:ring-orange-800 focus:border-transparent"
           />
         </div>
         <div className="flex justify-between mt-4">

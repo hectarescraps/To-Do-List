@@ -9,8 +9,11 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@emotion/react": "^11.13.3",
+    "@emotion/styled": "^11.13.0",
     "@heroicons/react": "^2.1.4",
     "@internationalized/date": "^3.5.4",
+    "@mui/material": "^6.0.2",
     "@mui/x-date-pickers": "^7.16.0",
     "@nextui-org/date-picker": "^2.1.2",
     "@vercel/postgres": "^0.9.0",
