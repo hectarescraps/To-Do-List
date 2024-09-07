@@ -24,9 +24,10 @@ async function TaskList({ project }: { project?: string }) {
         <div key={index}>
           <TaskContainer
             title={task.title}
-            dueDate={dayjs(task.duedate).format("MMM-D")}
+            dueDate={dayjs(task.duedate).format("MMM-DD")}
             project={task.project}
             id={task.id}
+            priority={task.priority}
           />
         </div>
       ))}

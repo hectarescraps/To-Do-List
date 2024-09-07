@@ -212,13 +212,13 @@ export function TaskForm({ onClose }: { onClose: () => void }) {
           <button
             type="button"
             onClick={onClose}
-            className="text-gray-500 bg-gray-200 px-4 py-2 rounded flex-1 mr-5"
+            className="text-gray-500 bg-gray-200 px-4 py-2 rounded flex-1 mr-5 border-2 border-transparent hover:border-black"
           >
             {"Close"}
           </button>
           <button
             type="submit"
-            className="text-white bg-orange-500 px-4 py-2 rounded flex-1 ml-5"
+            className="text-white bg-orange-500 px-4 py-2 rounded flex-1 ml-5 border-2 border-transparent hover:border-black"
           >
             {"Create Task"}
           </button>
