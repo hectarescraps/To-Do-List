@@ -9,7 +9,7 @@ export default function LayoutWrapper({
   userName,
 }: {
   projects: string[];
-  userName: string;
+  userName: string | undefined;
 }) {
   const [showSideNav, setShowSideNav] = useState(true);
 

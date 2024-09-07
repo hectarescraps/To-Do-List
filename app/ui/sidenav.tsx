@@ -12,7 +12,7 @@ export default function SideNav({
   projects,
   onClose,
 }: {
-  userName: string;
+  userName: string | undefined;
   projects: string[];
   onClose: () => void;
 }) {
