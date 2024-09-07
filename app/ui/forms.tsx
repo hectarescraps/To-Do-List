@@ -1,11 +1,13 @@
 "use client";
 
-import { now, getLocalTimeZone } from "@internationalized/date";
-import { DatePicker } from "@nextui-org/date-picker";
 import { State, createTask } from "../lib/actions";
 import { useFormState } from "react-dom";
 import { useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
+import { DatePicker as MuiDatePicker } from "@mui/x-date-pickers";
+import dayjs from "dayjs";
+import { LocalizationProvider } from "@mui/x-date-pickers";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 
 function CalendarIcon() {
   return (
@@ -62,34 +64,72 @@ export function TaskForm({ onClose }: { onClose: () => void }) {
           className="flex items-center justify-start pt-2 px-1"
         >
           <div id="duedate__container" className="relative">
-            <DatePicker
-              className="text-orange-500 font-light text-sm border border-orange-300 rounded-md px-2 py-1 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent w-full"
-              label=""
-              name="dueDate"
-              defaultValue={now(getLocalTimeZone())}
-              granularity="day"
-              isRequired
-              selectorIcon={
-                <span className="w-5 h-5 text-orange-500">
-                  <CalendarIcon />
-                </span>
-              }
-              popoverProps={{
-                placement: "bottom",
-                shouldFlip: false,
-                backdrop: "blur",
-                className:
-                  "bg-white text-orange-500 border border-orange-300 rounded-md shadow-lg p-2",
-              }}
-              calendarProps={{
-                minValue: now(getLocalTimeZone()),
-                showShadow: true,
-                classNames: {
-                  header: "bg-gray-200 text-gray-900",
-                },
-              }}
-            />
+            <LocalizationProvider dateAdapter={AdapterDayjs}>
+              <MuiDatePicker
+                disablePast={true}
+                name="dueDate"
+                format="MM/DD/YYYY"
+                formatDensity="spacious"
+                defaultValue={dayjs()}
+                slotProps={{
+                  openPickerIcon: {
+                    component: () => (
+                      <span className="w-5 h-5 text-orange-500">
+                        <CalendarIcon />
+                      </span>
+                    ),
+                  },
+                  textField: {
+                    size: "small",
+                    sx: {
+                      "& .MuiInputBase-root": {
+                        color: "#f97316", // orange-500
+                        fontWeight: 300, // font-light
+                      },
+                      "& .MuiOutlinedInput-notchedOutline": {
+                        borderColor: "#9ca3af", //gray-400
+                      },
+                      "&:hover .MuiOutlinedInput-notchedOutline": {
+                        borderColor: "#9a3412", // orange-800
+                      },
+                      "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+                        borderColor: "#9a3412", // orange-800
+                      },
+                      "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline":
+                        {
+                          borderColor: "#9a3412", // orange-800
+                          borderWidth: "2px", // Increase border width when focused
+                        },
+                    },
+                  },
+                  popper: {
+                    sx: {
+                      "& .MuiPickersCalendarHeader-root": {
+                        backgroundColor: "#fff7ed", // orange-50
+                        color: "#9a3412", // orange-800
+                      },
+                      "& .MuiPickersDay-root": {
+                        "&:hover": {
+                          backgroundColor: "#ffedd5", // orange-100
+                        },
+                        "&.Mui-selected": {
+                          backgroundColor: "#f97316", // Orange-500
+                          color: "white", // White text for selected day
+                          "&:hover": {
+                            backgroundColor: "#9a3412", // Orange-800
+                          },
+                        },
+                      },
+                      "& .MuiPickersDay-today": {
+                        border: "none", // Remove circle around current date
+                      },
+                    },
+                  },
+                }}
+              />
+            </LocalizationProvider>
           </div>
+
           <div
             id="priority__container"
             className="flex flex-grow items-center justify-start px-2"
