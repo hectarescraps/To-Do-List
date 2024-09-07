@@ -70,7 +70,6 @@ export function TaskForm({ onClose }: { onClose: () => void }) {
                 name="dueDate"
                 format="MM/DD/YYYY"
                 formatDensity="spacious"
-                defaultValue={dayjs()}
                 slotProps={{
                   openPickerIcon: {
                     component: () => (
@@ -85,6 +84,7 @@ export function TaskForm({ onClose }: { onClose: () => void }) {
                       "& .MuiInputBase-root": {
                         color: "#f97316", // orange-500
                         fontWeight: 300, // font-light
+                        height: "36px",
                       },
                       "& .MuiOutlinedInput-notchedOutline": {
                         borderColor: "#9ca3af", //gray-400
@@ -183,6 +183,10 @@ export function TaskForm({ onClose }: { onClose: () => void }) {
             {"Create Task"}
           </button>
         </div>
+
+        {state.message && (
+          <div className="text-orange-800 pt-4">{state.message}</div>
+        )}
       </form>
     </>
   );

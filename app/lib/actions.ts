@@ -52,7 +52,7 @@ export async function createTask(prevState: State, formData: FormData) {
     console.log(validatedFields.error.flatten().fieldErrors);
     return {
       errors: validatedFields.error.flatten().fieldErrors,
-      message: "Invalid fields. Failed to create Task",
+      message: "Invalid fields. Please fix all errors and try again!",
       success: false,
     };
   }
