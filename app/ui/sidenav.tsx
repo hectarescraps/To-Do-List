@@ -31,11 +31,11 @@ export default function SideNav({
         className="flex flex-grow-0 justify-between items-center pt-2"
         id="top__row"
       >
-        <h1 className="ml-4 text-lg font-light">{userName}</h1>
+        <h1 className="ml-4 text-xl text-orange-800">{userName}</h1>
         <ChevronDoubleLeftIcon
           onClick={onClose}
           className="w-4 h-4 mr-4 hover:stroke-orange-800 cursor-pointer"
-          strokeWidth={2}
+          strokeWidth={2.5}
         />
       </div>
       <div className="flex-col pt-6" id="inboxes">

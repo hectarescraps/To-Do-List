@@ -4,7 +4,13 @@ import { useState } from "react";
 import SideNav from "../ui/sidenav";
 import { ChevronDoubleRightIcon } from "@heroicons/react/24/outline";
 
-export default function LayoutWrapper({ projects }: { projects: string[] }) {
+export default function LayoutWrapper({
+  projects,
+  userName,
+}: {
+  projects: string[];
+  userName: string;
+}) {
   const [showSideNav, setShowSideNav] = useState(true);
 
   return (
@@ -13,7 +19,7 @@ export default function LayoutWrapper({ projects }: { projects: string[] }) {
         <div className="w-1/4">
           <SideNav
             onClose={() => setShowSideNav(false)}
-            userName="Bill"
+            userName={userName}
             projects={projects}
           />
         </div>
@@ -24,7 +30,7 @@ export default function LayoutWrapper({ projects }: { projects: string[] }) {
             <ChevronDoubleRightIcon
               onClick={() => setShowSideNav(true)}
               className="w-4 h-4 ml-1 mr-1 hover:stroke-orange-800 cursor-pointer"
-              strokeWidth={2}
+              strokeWidth={2.5}
             />
           </div>
         </div>
