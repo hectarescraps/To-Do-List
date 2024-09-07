@@ -58,6 +58,7 @@ export function TaskForm({ onClose }: { onClose: () => void }) {
             placeholder="Task Title"
             type="text"
             className="text-lg text-gray-400 px-1 w-full font-light rounded-sm focus:outline-none focus:ring-2 focus:ring-orange-800 focus:border-transparent"
+            required
           />
         </div>
 
@@ -141,6 +142,7 @@ export function TaskForm({ onClose }: { onClose: () => void }) {
                 className="flex items-center"
                 defaultValue=""
                 displayEmpty
+                required
                 sx={{
                   height: "36px",
                   "& .MuiSelect-select": {
@@ -203,6 +205,7 @@ export function TaskForm({ onClose }: { onClose: () => void }) {
             placeholder="Project"
             type="text"
             className=" text-gray-400 px-1 w-full font-light rounded-sm focus:outline-none focus:ring-2 focus:ring-orange-800 focus:border-transparent"
+            required
           />
         </div>
         <div className="flex justify-between mt-4">
