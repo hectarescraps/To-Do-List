@@ -13,7 +13,7 @@ export function TaskButton({
 }) {
   return (
     <button
-      className="rounded-full border-orange-800 border-2 ml-2 mr-3 w-5 h-5 flex justify-center items-center group"
+      className="rounded-full border-orange-500 border-2 ml-2 mr-3 w-5 h-5 flex justify-center items-center hover:border-orange-800 group"
       type="button"
       value="false"
       onClick={() => deleteTask({ id, currentProject })}

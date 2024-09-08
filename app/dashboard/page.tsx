@@ -19,9 +19,9 @@ async function TaskList({ project }: { project?: string }) {
       : tasks;
 
   return (
-    <>
+    <div className="pt-4">
       {filteredTasks.map((task, index) => (
-        <div key={index}>
+        <div key={index} className="py-1">
           <TaskContainer
             title={task.title}
             dueDate={dayjs(task.duedate).format("MMM-DD")}
@@ -32,7 +32,7 @@ async function TaskList({ project }: { project?: string }) {
           />
         </div>
       ))}
-    </>
+    </div>
   );
 }
 

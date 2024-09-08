@@ -32,7 +32,7 @@ export function TaskContainer({
 }) {
   const flagClassName = getFlagClass(priority);
   return (
-    <div className="border-b-2 border-gray-300 pb-1 pt-1" id="task__container">
+    <div className="border-b-2 border-gray-300 pb-1 py-1" id="task__container">
       <div className="flex items-center justify-start" id="top__row">
         <TaskButton id={id} currentProject={currentProject} />
         <p className="text-lg font-light">{title}</p>

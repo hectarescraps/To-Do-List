@@ -8,7 +8,7 @@ export function AddTaskWrapper() {
 
   return (
     <>
-      <div className="pt-1 pb-1">
+      <div className="py-2">
         <AddTaskButton onAddTask={() => setShowTaskForm(true)} />
       </div>
       {showTaskForm && (
