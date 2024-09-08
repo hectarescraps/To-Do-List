@@ -4,9 +4,11 @@ import {
   ChevronDoubleLeftIcon,
   InboxIcon,
   HashtagIcon,
+  ArrowLeftStartOnRectangleIcon,
 } from "@heroicons/react/24/outline";
 import { useRouter } from "next/navigation";
 import { useSearchParams } from "next/navigation";
+import { handleSignOut } from "../lib/actions";
 
 export default function SideNav({
   userName,
@@ -41,45 +43,23 @@ export default function SideNav({
           strokeWidth={2.5}
         />
       </div>
-      <div className="flex flex-grow item-center flex-col py-6" id="inboxes">
-        <button
-          className={`flex justify-start items-center py-2 group ${
-            currentProject === "All Tasks" || !currentProject
-              ? "bg-orange-100 rounded-md"
-              : ""
-          }`}
-          id="all_tasks"
-          onClick={() => handleProjectClick("All Tasks")}
-        >
-          <InboxIcon
-            className={`w-4 h-4 ml-4 ${
-              currentProject === "All Tasks" || !currentProject
-                ? "stroke-orange-500"
-                : "group-hover:stroke-orange-800"
-            }`}
-            strokeWidth={2}
-          />
-          <h2
-            className={`ml-4 text-lg font-light ${
-              currentProject === "All Tasks" || !currentProject
-                ? "text-orange-500"
-                : "group-hover:text-orange-800"
-            }`}
-          >
-            {"All Tasks"}
-          </h2>
-        </button>
-        {projects.map((project, index) => (
+      <div
+        className="flex flex-grow flex-col justify-between"
+        id="projects__signout"
+      >
+        <div className="flex flex-grow item-center flex-col py-6" id="inboxes">
           <button
-            key={index}
             className={`flex justify-start items-center py-2 group ${
-              currentProject === project ? "bg-orange-100 rounded-md" : ""
+              currentProject === "All Tasks" || !currentProject
+                ? "bg-orange-100 rounded-md"
+                : ""
             }`}
-            onClick={() => handleProjectClick(project)}
+            id="all_tasks"
+            onClick={() => handleProjectClick("All Tasks")}
           >
-            <HashtagIcon
+            <InboxIcon
               className={`w-4 h-4 ml-4 ${
-                currentProject === project
+                currentProject === "All Tasks" || !currentProject
                   ? "stroke-orange-500"
                   : "group-hover:stroke-orange-800"
               }`}
@@ -87,15 +67,57 @@ export default function SideNav({
             />
             <h2
               className={`ml-4 text-lg font-light ${
-                currentProject === project
+                currentProject === "All Tasks" || !currentProject
                   ? "text-orange-500"
                   : "group-hover:text-orange-800"
               }`}
             >
-              {project}
+              {"All Tasks"}
             </h2>
           </button>
-        ))}
+          {projects.map((project, index) => (
+            <button
+              key={index}
+              className={`flex justify-start items-center py-2 group ${
+                currentProject === project ? "bg-orange-100 rounded-md" : ""
+              }`}
+              onClick={() => handleProjectClick(project)}
+            >
+              <HashtagIcon
+                className={`w-4 h-4 ml-4 ${
+                  currentProject === project
+                    ? "stroke-orange-500"
+                    : "group-hover:stroke-orange-800"
+                }`}
+                strokeWidth={2}
+              />
+              <h2
+                className={`ml-4 text-lg font-light ${
+                  currentProject === project
+                    ? "text-orange-500"
+                    : "group-hover:text-orange-800"
+                }`}
+              >
+                {project}
+              </h2>
+            </button>
+          ))}
+        </div>
+        <button
+          className="flex justify-start items-center py-2 group"
+          id="signout"
+          onClick={() => {
+            handleSignOut();
+          }}
+        >
+          <ArrowLeftStartOnRectangleIcon
+            className="w-4 h-4 ml-4 group-hover:stroke-orange-800"
+            strokeWidth={2}
+          />
+          <h2 className="ml-4 pb-0.5 text-lg font-light group-hover:text-orange-800">
+            {"Sign Out"}
+          </h2>
+        </button>
       </div>
     </div>
   );

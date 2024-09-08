@@ -92,10 +92,10 @@ export function TaskForm({ onClose }: { onClose: () => void }) {
                       "& .MuiOutlinedInput-notchedOutline": {
                         borderColor: "#9ca3af", //gray-400
                       },
-                      "&:hover .MuiOutlinedInput-notchedOutline": {
-                        borderColor: "#f97316", // orange-500
-                      },
-
+                      "& .MuiInputBase-root:hover .MuiOutlinedInput-notchedOutline":
+                        {
+                          borderColor: "#f97316", // orange-500
+                        },
                       "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline":
                         {
                           borderColor: "#f97316", // orange-500
@@ -113,16 +113,22 @@ export function TaskForm({ onClose }: { onClose: () => void }) {
                         "&:hover": {
                           backgroundColor: "#ffedd5", // orange-100
                         },
-                        "&.Mui-selected": {
-                          backgroundColor: "#f97316", // Orange-500
-                          color: "white", // White text for selected day
-                          "&:hover": {
-                            backgroundColor: "#9a3412", // Orange-800
-                          },
+                      },
+                      "& .MuiPickersDay-root.Mui-selected": {
+                        backgroundColor: "#f97316 !important", // Orange-500
+                        color: "white !important", // White text for selected day
+                        "&:hover": {
+                          backgroundColor: "#9a3412 !important", // Orange-800
                         },
+                      },
+                      "& .MuiPickersDay-today.Mui-selected": {
+                        border: "none", // Remove circle around current date
+                        backgroundColor: "#f97316 !important", // Orange-500
+                        color: "white !important", // White text for today
                       },
                       "& .MuiPickersDay-today": {
                         border: "none", // Remove circle around current date
+                        backgroundColor: "#ffffff !important", // Orange-500
                       },
                     },
                   },

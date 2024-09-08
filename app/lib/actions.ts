@@ -4,7 +4,7 @@ import { z } from "zod";
 import { sql } from "@vercel/postgres";
 import { revalidatePath } from "next/cache";
 import { redirect, useRouter } from "next/navigation";
-import { signIn } from "@/auth";
+import { signIn, signOut } from "@/auth";
 import { AuthError } from "next-auth";
 import bcrypt from "bcrypt";
 import { auth } from "@/auth";
@@ -153,4 +153,9 @@ export async function createUser(
     console.error("Failed to sign in user after sign up", error);
     throw new Error("Failed to sign in user after sign up");
   }
+}
+
+export async function handleSignOut() {
+  await signOut();
+  redirect("/login");
 }
