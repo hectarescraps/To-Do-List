@@ -41,7 +41,7 @@ export default function LoginForm() {
             </label>
             <div className="relative">
               <input
-                className="peer block w-full rounded-md border border-gray-200 py-[9px] pl-10 text-sm outline-2 placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:border-transparent focus:ring-orange-800"
+                className="peer block w-full rounded-md border border-gray-200 py-[9px] pl-10 text-sm outline-2 placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:border-transparent focus:ring-orange-500"
                 id="email"
                 type="email"
                 name="email"
@@ -60,7 +60,7 @@ export default function LoginForm() {
             </label>
             <div className="relative">
               <input
-                className="peer block w-full rounded-md border border-gray-200 py-[9px] pl-10 text-sm outline-2 placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:border-transparent focus:ring-orange-800"
+                className="peer block w-full rounded-md border border-gray-200 py-[9px] pl-10 text-sm outline-2 placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:border-transparent focus:ring-orange-500"
                 id="password"
                 type="password"
                 name="password"
@@ -72,25 +72,25 @@ export default function LoginForm() {
             </div>
           </div>
         </div>
-        <div className="flex items-center justify-around pt-4">
+        <div className="flex items-center justify-around">
           <button
             type="submit"
             onClick={() => setSignUp(!signUp)}
-            className="mt-4 w-full border-2 rounded-lg border-transparent hover:bg-orange-500 hover:text-white"
+            className="mt-4 w-full rounded-lg py-2 hover:bg-gray-300 hover:text-white"
             aria-disabled={pending}
           >
             Sign Up
           </button>
           <button
             type="submit"
-            className="mt-4 w-full border-2 rounded-lg border-transparent hover:bg-orange-500 hover:text-white"
+            className="mt-4 w-full  rounded-lg py-2 hover:bg-gray-300 hover:text-white "
             aria-disabled={pending}
           >
             Log in
           </button>
         </div>
         <div
-          className="flex h-8 items-end space-x-1"
+          className="flex items-end space-x-1"
           aria-live="polite"
           aria-atomic="true"
         >

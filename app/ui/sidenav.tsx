@@ -6,6 +6,7 @@ import {
   HashtagIcon,
 } from "@heroicons/react/24/outline";
 import { useRouter } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 
 export default function SideNav({
   userName,
@@ -17,6 +18,8 @@ export default function SideNav({
   onClose: () => void;
 }) {
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const currentProject = searchParams.get("project");
 
   const handleProjectClick = (project: string) => {
     router.push(`/dashboard?project=${project}`);
@@ -38,32 +41,57 @@ export default function SideNav({
           strokeWidth={2.5}
         />
       </div>
-      <div className="flex-col pt-6" id="inboxes">
+      <div className="flex flex-grow item-center flex-col py-6" id="inboxes">
         <button
-          className="flex justify-start items-center ml-4 pt-3 group"
+          className={`flex justify-start items-center py-2 group ${
+            currentProject === "All Tasks" || !currentProject
+              ? "bg-orange-100 rounded-md"
+              : ""
+          }`}
           id="all_tasks"
           onClick={() => handleProjectClick("All Tasks")}
         >
           <InboxIcon
-            className="w-4 h-4 group-hover:stroke-orange-800"
+            className={`w-4 h-4 ml-4 ${
+              currentProject === "All Tasks" || !currentProject
+                ? "stroke-orange-500"
+                : "group-hover:stroke-orange-800"
+            }`}
             strokeWidth={2}
           />
-          <h2 className="ml-4 text-lg font-light group-hover:text-orange-800">
+          <h2
+            className={`ml-4 text-lg font-light ${
+              currentProject === "All Tasks" || !currentProject
+                ? "text-orange-500"
+                : "group-hover:text-orange-800"
+            }`}
+          >
             {"All Tasks"}
           </h2>
         </button>
         {projects.map((project, index) => (
           <button
-            className="flex justify-start items-center ml-4 pt-3 group "
-            id="all_tasks"
             key={index}
+            className={`flex justify-start items-center py-2 group ${
+              currentProject === project ? "bg-orange-100 rounded-md" : ""
+            }`}
             onClick={() => handleProjectClick(project)}
           >
             <HashtagIcon
-              className="w-4 h-4 group-hover:stroke-orange-800 "
+              className={`w-4 h-4 ml-4 ${
+                currentProject === project
+                  ? "stroke-orange-500"
+                  : "group-hover:stroke-orange-800"
+              }`}
               strokeWidth={2}
             />
-            <h2 className="ml-4 text-lg font-light group-hover:text-orange-800">
+            <h2
+              className={`ml-4 text-lg font-light ${
+                currentProject === project
+                  ? "text-orange-500"
+                  : "group-hover:text-orange-800"
+              }`}
+            >
               {project}
             </h2>
           </button>
