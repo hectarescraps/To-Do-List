@@ -1,11 +1,10 @@
 ## To Do List web app built with TypeScript, Tailwind CSS, PostgreSQL and NextJS.
 
  o  https://to-do-list-vert-eta.vercel.app/
+
+ o	Please check out the site! You can create an account, add tasks, and check off those tasks as you'd like. Instructions to build locally can be found below.
  
  o	User sign-in and authorization implemented with NextAuth and bcrypt.
-
- o	Please check out the site! You can create an account, add tasks, and check off those tasks by clicking the orange circle check-lights next to each task. Instructions to build locally can be found below.
- 
 
 
 ![Screenshot 2024-09-07 at 11 26 27 PM](https://github.com/user-attachments/assets/9d502d87-7a0a-48d0-80af-2bc5f38275c0)
