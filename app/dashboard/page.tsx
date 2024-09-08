@@ -28,6 +28,7 @@ async function TaskList({ project }: { project?: string }) {
             project={task.project}
             id={task.id}
             priority={task.priority}
+            currentProject={project}
           />
         </div>
       ))}

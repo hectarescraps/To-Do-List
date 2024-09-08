@@ -83,14 +83,23 @@ export async function createTask(prevState: State, formData: FormData) {
   // redirect("/dashboard");
 }
 
-export async function deleteTask({ id }: { id: string }) {
+export async function deleteTask({
+  id,
+  currentProject,
+}: {
+  id: string;
+  currentProject?: string;
+}) {
   try {
     sql`DELETE FROM ONLY tasks WHERE id = ${id}`;
   } catch (error) {
     return { message: "Database Error. Failed to delete Task" };
   }
-  revalidatePath("/dashboard");
-  redirect("/dashboard");
+  const currentUrl = currentProject
+    ? `/dashboard?project=${currentProject}`
+    : "/dashboard";
+  revalidatePath(currentUrl);
+  redirect(currentUrl);
 }
 
 export async function authenticate(

@@ -4,13 +4,19 @@ import { CheckIcon, PlusIcon } from "@heroicons/react/24/outline";
 import { deleteTask } from "../lib/actions";
 import { TaskForm } from "./forms";
 
-export function TaskButton({ id }: { id: string }) {
+export function TaskButton({
+  id,
+  currentProject,
+}: {
+  id: string;
+  currentProject?: string;
+}) {
   return (
     <button
       className="rounded-full border-orange-800 border-2 ml-2 mr-3 w-5 h-5 flex justify-center items-center group"
       type="button"
       value="false"
-      onClick={() => deleteTask({ id })}
+      onClick={() => deleteTask({ id, currentProject })}
     >
       <CheckIcon
         className="invisible w-2.5 h-2.5 stroke-gray-500 group-hover:visible"

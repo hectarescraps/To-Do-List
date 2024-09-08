@@ -21,18 +21,20 @@ export function TaskContainer({
   project,
   id,
   priority,
+  currentProject,
 }: {
   title: string;
   dueDate: string;
   project: string;
   id: string;
   priority: number;
+  currentProject?: string;
 }) {
   const flagClassName = getFlagClass(priority);
   return (
     <div className="border-b-2 border-gray-300 pb-1 pt-1" id="task__container">
       <div className="flex items-center justify-start" id="top__row">
-        <TaskButton id={id} />
+        <TaskButton id={id} currentProject={currentProject} />
         <p className="text-lg font-light">{title}</p>
       </div>
       <div className="flex items-center justify-between" id="bottom__row">
