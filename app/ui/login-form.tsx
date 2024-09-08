@@ -41,14 +41,14 @@ export default function LoginForm() {
             </label>
             <div className="relative">
               <input
-                className="peer block w-full rounded-md border border-gray-200 py-[9px] pl-10 text-sm outline-2 placeholder:text-gray-500"
+                className="peer block w-full rounded-md border border-gray-200 py-[9px] pl-10 text-sm outline-2 placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:border-transparent focus:ring-orange-800"
                 id="email"
                 type="email"
                 name="email"
                 placeholder="Enter your email address"
                 required
               />
-              <AtSymbolIcon className="pointer-events-none absolute left-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-gray-500 peer-focus:text-gray-900" />
+              <AtSymbolIcon className="pointer-events-none absolute left-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-gray-500  peer-focus:text-gray-900" />
             </div>
           </div>
           <div className="mt-4">
@@ -60,7 +60,7 @@ export default function LoginForm() {
             </label>
             <div className="relative">
               <input
-                className="peer block w-full rounded-md border border-gray-200 py-[9px] pl-10 text-sm outline-2 placeholder:text-gray-500"
+                className="peer block w-full rounded-md border border-gray-200 py-[9px] pl-10 text-sm outline-2 placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:border-transparent focus:ring-orange-800"
                 id="password"
                 type="password"
                 name="password"
@@ -72,17 +72,23 @@ export default function LoginForm() {
             </div>
           </div>
         </div>
-        <button
-          type="submit"
-          onClick={() => setSignUp(!signUp)}
-          className="mt-4 w-full"
-          aria-disabled={pending}
-        >
-          Sign Up
-        </button>
-        <button type="submit" className="mt-4 w-full" aria-disabled={pending}>
-          Log in
-        </button>
+        <div className="flex items-center justify-around pt-4">
+          <button
+            type="submit"
+            onClick={() => setSignUp(!signUp)}
+            className="mt-4 w-full border-2 rounded-lg border-transparent hover:bg-orange-500 hover:text-white"
+            aria-disabled={pending}
+          >
+            Sign Up
+          </button>
+          <button
+            type="submit"
+            className="mt-4 w-full border-2 rounded-lg border-transparent hover:bg-orange-500 hover:text-white"
+            aria-disabled={pending}
+          >
+            Log in
+          </button>
+        </div>
         <div
           className="flex h-8 items-end space-x-1"
           aria-live="polite"

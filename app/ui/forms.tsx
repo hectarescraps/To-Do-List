@@ -57,7 +57,7 @@ export function TaskForm({ onClose }: { onClose: () => void }) {
             name="title"
             placeholder="Task Title"
             type="text"
-            className="text-lg text-gray-400 px-1 w-full font-light rounded-sm focus:outline-none focus:ring-2 focus:ring-orange-800 focus:border-transparent"
+            className="text-lg text-gray-400 px-1 w-full font-light rounded-sm focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent"
             required
           />
         </div>
@@ -93,12 +93,12 @@ export function TaskForm({ onClose }: { onClose: () => void }) {
                         borderColor: "#9ca3af", //gray-400
                       },
                       "&:hover .MuiOutlinedInput-notchedOutline": {
-                        borderColor: "#9a3412", // orange-800
+                        borderColor: "#f97316", // orange-500
                       },
 
                       "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline":
                         {
-                          borderColor: "#9a3412", // orange-800
+                          borderColor: "#f97316", // orange-500
                           borderWidth: "2px", // Increase border width when focused
                         },
                     },
@@ -153,10 +153,10 @@ export function TaskForm({ onClose }: { onClose: () => void }) {
                     borderColor: "#9ca3af",
                   },
                   "&:hover .MuiOutlinedInput-notchedOutline": {
-                    borderColor: "#9a3412",
+                    borderColor: "#f97316", // orange-500
                   },
                   "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
-                    borderColor: "#9a3412",
+                    borderColor: "#f97316", // orange-500
                     borderWidth: "2px",
                   },
                 }}
@@ -204,7 +204,7 @@ export function TaskForm({ onClose }: { onClose: () => void }) {
             name="project"
             placeholder="Project"
             type="text"
-            className=" text-gray-400 px-1 w-full font-light rounded-sm focus:outline-none focus:ring-2 focus:ring-orange-800 focus:border-transparent"
+            className=" text-gray-400 px-1 w-full font-light rounded-sm focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent"
             required
           />
         </div>
@@ -212,13 +212,13 @@ export function TaskForm({ onClose }: { onClose: () => void }) {
           <button
             type="button"
             onClick={onClose}
-            className="text-gray-500 bg-gray-200 px-4 py-2 rounded flex-1 mr-5 border-2 border-transparent hover:border-black"
+            className="text-gray-500 bg-gray-200 px-4 py-2 rounded flex-1 mr-5 border-2 border-transparent hover:bg-gray-300"
           >
             {"Close"}
           </button>
           <button
             type="submit"
-            className="text-white bg-orange-500 px-4 py-2 rounded flex-1 ml-5 border-2 border-transparent hover:border-black"
+            className="text-white bg-orange-500 px-4 py-2 rounded flex-1 ml-5 border-2 border-transparent hover:bg-orange-600"
           >
             {"Create Task"}
           </button>
